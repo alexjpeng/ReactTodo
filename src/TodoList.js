@@ -4,6 +4,21 @@ import { TodoItem } from './TodoItem.js'
 import styled from 'styled-components'
 
 
+const TodoInput = styled.input`
+margin-left: 24px;
+margin-top: 
+`;
+
+const StyledToDoList = styled.ul`
+display: flex;
+flex-direction: column;
+margin: 1rem;
+padding: 5em;
+border-style: solid;
+border-width: 2px;
+border-radius: 10px;
+`
+
 export class TodoList extends Component {
   constructor(props) {
     super(props);
@@ -46,7 +61,6 @@ export class TodoList extends Component {
   }
 
   handleNewTodo = (e) => {
-    //console.log(e.target)
     e.preventDefault()
     const nextTodos = {...this.state.todos};
     const newTodoItem = {
@@ -59,13 +73,14 @@ export class TodoList extends Component {
       todos: nextTodos
     })
     e.target[0].value = '';
+    console.log(this.state)
   }
 
   handleDelete = (toDoItem) => {
     return () => {
       const nextTodos = {...this.state.todos};
       delete nextTodos[toDoItem.id]
-      console.log(toDoItem);
+      //console.log(toDoItem);
       //nextTodos.splice(index, 1);
       this.setState({
         todos: nextTodos
@@ -74,9 +89,9 @@ export class TodoList extends Component {
   }
   
   render() {
-    console.log(this.state);
+    //console.log(this.state);
     return (
-      <ul>  
+      <StyledToDoList>  
         {Object.keys(this.state.todos).map((todoItemId) => {
           const todoItem = this.state.todos[todoItemId];
            return (
@@ -93,9 +108,9 @@ export class TodoList extends Component {
              );
          })}
          <form onSubmit={this.handleNewTodo}>
-           <input type="text" placeholder="New todo item"/> 
+           <TodoInput type="text" placeholder="New todo item" /> 
          </form>
-      </ul>
+      </StyledToDoList>
     );
   }
 }

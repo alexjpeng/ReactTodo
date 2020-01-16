@@ -5,6 +5,13 @@ import newId from './newid.js'
 import styled from 'styled-components'
 //let hash = require('object-hash');
 
+const StyledList = styled.ul`
+display: flex;
+flex-direction: row;
+flex-flow: row wrap;
+margin: 5rem;
+`
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -26,7 +33,7 @@ class App extends Component {
 
   render() {
     return (
-      <ul>
+      <StyledList>
         {this.state.todoLists.map((todoList) => {
            return (
              <li key={todoList.id}>
@@ -40,7 +47,7 @@ class App extends Component {
           value="new todo list"
           onClick={this.handleCreateTodoList}
         />
-      </ul>
+      </StyledList>
     );
   }
 }
